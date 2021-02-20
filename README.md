@@ -6,14 +6,14 @@ npm install --save haxif-vue2-dragselector
 
 ### 引用
 
->本版本为测试版本暂不支持添加数据请等待后续版本
->注意：引用本组件需要设定最大宽度和高度方式，如需滚动调请设置scroll-y:auto属性
+>width:数字自动转义px基准
+>data:传入参数，要求为对象数组（数组关键词 "ch" ，请不要使用ch作为变量存储数据否则会导致数据丢失 ）
 
 #### 参考引用
 ```html
 <template>
   <div class="main">
-    <xDragSelector></xDragSelector>
+    <xDragSelector width="500" :data="list"></xDragSelector>
   </div>
 </template>
 
@@ -23,7 +23,15 @@ export default {
   name: "DragSelector",
   components: { xDragSelector },
   data() {
-    return {};
+    return {
+      list: [
+        {
+          text:"倘若不输入则默认显示序号",
+          ch:"占用，请勿使用改变量"
+        },
+        {}
+      ],
+    };
   },
 };
 </script>
@@ -35,3 +43,6 @@ export default {
 }
 </style>
 ```
+
+>2021.02.20 - 新增历史记录控制（ctrl + z撤销，ctrl+shift+z 重做）
+>注意：在历史节点上进行操作后会覆盖原有数据请注意
